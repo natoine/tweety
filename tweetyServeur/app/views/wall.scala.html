@@ -3,15 +3,35 @@
 
 @main("Wall"){
 	<h1>Tweeter</h1>
-	@helper.form(action = routes.Application.createTweet()){
+	@helper.form(action = routes.Application.createTweet(), 'class -> "form-horizontal"){
 		<label>Auteur</label>
 		<input type="text" name="username" />
 		
-		<label>Content</label>
-		<input type="text" name="content" />
+		<label>Comment</label>
+		<input type="textarea" name="comment" />
 		
 		<input type="submit" />
 	}
 	<h1>Les Tweets</h1>
-	@tweets.size
+	
+	<table class="table table-striped">
+	
+		<tr>
+			<td>ID</td>
+			<td>Date</td>
+			<td>Username</td>
+			<td>Tweet</td>
+		</tr>
+		
+	@for((tweets, i) <- tweets.zipWithIndex) {
+		<tr>
+			<td>@tweets.id</td>
+			<td>@tweets.creationDate</td>
+			<td>@tweets.username</td>
+			<td>@tweets.comment</td>
+		</tr>
+	}
+	</table>
+	
+	Il y a au total @tweets.size tweets.
 }
