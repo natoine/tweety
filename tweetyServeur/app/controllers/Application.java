@@ -1,8 +1,9 @@
 package controllers;
 
 
-import play.data.Form;
+import java.util.Date;
 
+import play.data.Form;
 import models.Tweet;
 import play.*;
 import play.libs.Json;
@@ -33,6 +34,6 @@ public class Application extends Controller {
     	tweet.setUsername(form.field("username").value());
     	tweet.setCreationDate(new Date());
     	Tweet.create(tweet);
-    	return ok();
+    	return redirect(routes.Application.allTweet());
     }
 }
