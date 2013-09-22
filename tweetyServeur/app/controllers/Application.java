@@ -22,7 +22,7 @@ public class Application extends Controller {
     	return badRequest();
     }
 
-    public static void createTweet()
+    public static Result createTweet()
     {
     	Form<Tweet> form = Form.form(Tweet.class).bindFromRequest();
     	Tweet tweet = new Tweet();
@@ -30,5 +30,6 @@ public class Application extends Controller {
     	tweet.setUsername(form.field("username").value());
     	tweet.setCreationDate(new Date());
     	Tweet.create(tweet);
+    	return ok();
     }
 }
