@@ -1,5 +1,12 @@
-@(tweets : List[Tweet])
+@(tweets : List[Tweet], tForm: Form[Tweet])
+@import helper._
+
 @main("Wall"){
+	<h1>Tweeter</h1>
+	@helper.form(action = routes.Application.createTweet()){
+		<input type="text" name="username" />
+		<input type="text" name="content" />
+	}
 	<h1>Les Tweets</h1>
 	@tweets.size
 }

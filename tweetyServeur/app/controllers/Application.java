@@ -1,6 +1,7 @@
 package controllers;
 
-import java.util.Date;
+
+import play.data.Form;
 
 import models.Tweet;
 import play.*;
@@ -10,6 +11,8 @@ import views.html.*;
 import play.data.Form;
 
 public class Application extends Controller {
+	
+	final static Form<Tweet> tweetForm = Form.form(Tweet.class);
 
     public static Result index() {
         return ok(index.render("Your new application is ready."));
@@ -17,7 +20,7 @@ public class Application extends Controller {
     
     public static Result allTweet()
     {
-    	if (request().accepts("text/html")) return ok(views.html.wall.render(Tweet.findAll()));
+    	if (request().accepts("text/html")) return ok(views.html.wall.render(Tweet.findAll(), tweetForm));
     	else if(request().accepts("application/json")) return ok(Json.toJson(Tweet.findAll()));
     	return badRequest();
     }
