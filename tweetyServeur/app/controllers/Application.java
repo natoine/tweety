@@ -34,6 +34,6 @@ public class Application extends Controller {
     	tweet.setUsername(form.field("username").value());
     	tweet.setCreationDate(new Date());
     	Tweet.create(tweet);
-    	return ok();
+    	return redirect(routes.Application.allTweet());
     }
 }
