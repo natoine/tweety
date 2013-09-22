@@ -6,6 +6,8 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import com.avaje.ebean.Ebean;
+
 import play.db.ebean.Model;
 
 @Entity
@@ -23,6 +25,11 @@ public class Tweet extends Model
 	public static List<Tweet> findAll()
 	{
 		return find.all();
+	}
+	
+	public static void create(Tweet tweet)
+	{
+		Ebean.save(tweet);
 	}
 	
 	public String getComment() {
