@@ -4,8 +4,13 @@
 @main("Wall"){
 	<h1>Tweeter</h1>
 	@helper.form(action = routes.Application.createTweet()){
+		<label>Auteur</label>
 		<input type="text" name="username" />
+		
+		<label>Content</label>
 		<input type="text" name="content" />
+		
+		<input type="submit" />
 	}
 	<h1>Les Tweets</h1>
 	@tweets.size
