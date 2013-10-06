@@ -1,37 +1,30 @@
-@(tweets : List[Tweet], tForm: Form[Tweet])
-@import helper._
+@(tweets: List[Tweet], message: String)
 
-@main("Wall"){
-	<h1>Tweeter</h1>
-	@helper.form(action = routes.Application.createTweet(), 'class -> "form-horizontal"){
-		<label>Auteur</label>
-		<input type="text" name="username" />
-		
-		<label>Comment</label>
-		<input type="textarea" name="comment" />
-		
-		<input type="submit" />
-	}
-	<h1>Les Tweets</h1>
+@main("Tweety") {
+
+    <h1>@message</h1>
 	
 	<table class="table table-striped">
 	
 		<tr>
+			<td>nb Tweet</td>
 			<td>ID</td>
 			<td>Date</td>
 			<td>Username</td>
 			<td>Tweet</td>
 		</tr>
 		
-	@for((tweets, i) <- tweets.zipWithIndex) {
+	@for((tweet, i) <- tweets.zipWithIndex) {
 		<tr>
-			<td>@tweets.id</td>
-			<td>@tweets.creationDate</td>
-			<td>@tweets.username</td>
-			<td>@tweets.comment</td>
+			<td>@i</td>
+			<td>@tweet.id</td>
+			<td>@tweet.creationDate</td>
+			<td>@tweet.username</td>
+			<td>@tweet.commentaire</td>
 		</tr>
 	}
 	</table>
 	
 	Il y a au total @tweets.size tweets.
+
 }

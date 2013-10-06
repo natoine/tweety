@@ -4,8 +4,7 @@
 
 # Home page
 GET     /                           controllers.Application.index()
-GET		/wall						controllers.Application.allTweet()
-POST	/newtweet					controllers.Application.createTweet()
+GET		/wall/:username				controllers.Application.listTweets(username: String)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
