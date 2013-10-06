@@ -1,8 +1,22 @@
-@(tweets: List[Tweet], message: String)
+@(tweets: List[Tweet], message: String, tweetForm: Form[Tweet])
 
 @main("Tweety") {
 
     <h1>@message</h1>
+	
+	<h2>Nouveau Tweet : </h2>
+	
+	@helper.form(action = routes.Application.submitTweet()) {
+	
+	@helper.inputText(tweetForm("commentaire"))
+	@helper.inputText(tweetForm("username"))
+	
+	<input type="submit" class="btn primary" value="tweet !!!">
+	
+	}
+	
+	
+	<h2>Messages</h2>
 	
 	<table class="table table-striped">
 	
