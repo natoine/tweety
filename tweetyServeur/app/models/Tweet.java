@@ -25,4 +25,8 @@ public class Tweet extends Model
 		return find.all();
 	}
 	
+	public static List<Tweet> findByUsername(String username)
+	{
+		return find.where().eq("username", username).findList();
+	}
 }

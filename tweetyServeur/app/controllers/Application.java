@@ -22,8 +22,11 @@ public class Application extends Controller {
     
     public static Result listTweets(String username)
     {
-    	List<Tweet> tweets = Tweet.all();
-    	
+    	List<Tweet> tweets ;
+    	if(username.equals("visiteur"))
+    		tweets = Tweet.all();
+    	else 
+    		tweets = Tweet.findByUsername(username);
     	if(request().accepts("text/html"))
     		return ok(views.html.wall.render(tweets, "bonjour " + username, tweetForm));
     	else if(request().accepts("application/json"))
