@@ -6,6 +6,8 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import com.avaje.ebean.PagingList;
+
 import play.db.ebean.Model;
 import play.db.ebean.Model.Finder;
 
@@ -22,7 +24,8 @@ public class Tweet extends Model
 	
 	public static List<Tweet> all()
 	{
-		return find.all();
+		//return find.all();
+		return find.setMaxRows(2).findList();
 	}
 	
 	public static List<Tweet> findByUsername(String username)
@@ -35,5 +38,10 @@ public class Tweet extends Model
 		tweet.creationDate = new Date();
     	tweet.save();
     	return tweet;
+	}
+	
+	public static List<Tweet> findNext(int from, int nb)
+	{
+		return find.setFirstRow(from).setMaxRows(nb).findList();
 	}
 }

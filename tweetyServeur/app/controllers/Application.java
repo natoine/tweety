@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import models.Tweet;
+import com.fasterxml.jackson.databind.JsonNode;
 
+import models.Tweet;
 import play.data.Form;
 import play.libs.Json;
 import play.mvc.*;
-
 import views.html.*;
 
 public class Application extends Controller {
@@ -42,5 +42,20 @@ public class Application extends Controller {
     	Tweet tweet = tweetForm.bindFromRequest().get();
     	Tweet.create(tweet);
     	return redirect(routes.Application.listTweets("visiteur"));
+    }
+    
+    public static Result listTweetsFromTo()
+    {
+    	if(request().accepts("application/json"))
+    	{
+    		JsonNode body = request().body().asJson();
+    		System.out.println(body);
+    		int from = body.get("from").asInt();
+        	int to =  body.get("to").asInt();
+        	List<Tweet> tweets = Tweet.findNext(from, to);
+        	System.out.println(Json.toJson(tweets));
+        	return ok(Json.toJson(tweets));
+    	}
+    	return badRequest();
     }
 }
