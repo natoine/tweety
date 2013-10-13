@@ -29,4 +29,11 @@ public class Tweet extends Model
 	{
 		return find.where().eq("username", username).findList();
 	}
+	
+	public static Tweet create(Tweet tweet)
+	{
+		tweet.creationDate = new Date();
+    	tweet.save();
+    	return tweet;
+	}
 }

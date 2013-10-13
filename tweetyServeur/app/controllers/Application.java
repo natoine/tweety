@@ -1,6 +1,7 @@
 package controllers;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import models.Tweet;
@@ -39,7 +40,7 @@ public class Application extends Controller {
     public static Result submitTweet()
     {
     	Tweet tweet = tweetForm.bindFromRequest().get();
-    	tweet.save();
+    	Tweet.create(tweet);
     	return redirect(routes.Application.listTweets("visiteur"));
     }
 }

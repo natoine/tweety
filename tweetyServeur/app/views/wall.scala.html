@@ -28,7 +28,7 @@
 			<td>Tweet</td>
 		</tr>
 		
-	@for((tweet, i) <- tweets.zipWithIndex) {
+	@for((tweet, i) <- tweets.zipWithIndex.reverse) {
 		<tr>
 			<td>@i</td>
 			<td>@tweet.id</td>

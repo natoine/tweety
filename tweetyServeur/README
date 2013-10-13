@@ -2,3 +2,16 @@ This is your new Play application
 =====================================
 
 This file will be packaged with your application, when using `play dist`.
+
+How to launch H2 and see it in browser ?
+Dans une console, play
+h2-browser -> ouvre un navigateur à l'url http://127.0.1.1:8082/
+dans la console run
+dans le navigateur localhost:9000
+apply this script
+Et maintenant dans la fenêtre http://127.0.1.1:8082/ plus qu'à cliquer sur connect
+
+How to make true persistency with H2 ?
+Changer l'url dans le fichier application.conf -> db.default.url="jdbc:h2:db/database"
+Les données vont être dans le dossier db fichier database.h2.db
+Du coup pour accéder à la base dans le navigateur, il faut maintenant taper jdbc:h2:db/database dans le champ URL JDBC
