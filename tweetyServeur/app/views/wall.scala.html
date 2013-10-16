@@ -51,7 +51,7 @@ $(document).ready(function($){
             location.reload();
         });
         
-        $btnMoreTweets = $(".btn-more");
+     $btnMoreTweets = $(".btn-more");
 
 	 $btnMoreTweets.click(function(event) {
             $this = $(this);
@@ -59,10 +59,11 @@ $(document).ready(function($){
 	 	$.ajax({
                 type: 'POST',
                 url: "@routes.Application.listTweetsFromTo()",
-				contentType: "application/json; charset=UTF-8",
+                contentType: "application/json; charset=UTF-8",
                 data: JSON.stringify({"from":@tweets.size(), "to":3}),
                 success: function(data){
-                   alert(data);
+                	var obj = eval(data);
+                	alert(obj[0].id);
                    }
                    })
                });
